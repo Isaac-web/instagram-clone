@@ -1,0 +1,9 @@
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+	"name": "To Be Deleted",
+	"email": "delete@gmail.com",
+	"username": "To_Be_del",
+	"password": "Password"
+}
