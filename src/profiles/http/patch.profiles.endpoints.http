@@ -1,0 +1,7 @@
+PATCH http://localhost:3000/profiles/3
+Content-Type: application/json
+
+{
+	"bio": "Sample bio",
+	"profileImage": "http://some-random-bucket..."
+}
