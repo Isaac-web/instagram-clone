@@ -7,6 +7,7 @@ import { environmentsValidationSchema } from './config/environments.validation.c
 import appConfig from './config/app.config';
 import databaseConfig from './config/database.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ProfilesModule } from './profiles/profiles.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -33,6 +34,7 @@ const ENV = process.env.NODE_ENV;
         autoLoadEntities: config.get('database.autoLoadEntities'),
       }),
     }),
+    ProfilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

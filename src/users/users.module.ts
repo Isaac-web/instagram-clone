@@ -11,6 +11,13 @@ import { DeleteUserProvider } from './providers/delete-user.provider';
 @Module({
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [UsersController],
-  providers: [UsersService, CreateUserProvider, FindUserProvider, UpdateUserProvider, DeleteUserProvider],
+  providers: [
+    UsersService,
+    CreateUserProvider,
+    FindUserProvider,
+    UpdateUserProvider,
+    DeleteUserProvider,
+  ],
+  exports: [UsersService],
 })
 export class UsersModule {}
