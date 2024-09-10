@@ -1,0 +1,9 @@
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "userId": 5,
+  "caption": "This is an amazing post...",
+  "mediaUrl": "https://s3.aws.com/some-random-bucket/path-to-file/image.jpg",
+  "location": "New York City, NYC"
+}

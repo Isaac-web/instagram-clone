@@ -18,6 +18,6 @@ import { DeleteUserProvider } from './providers/delete-user.provider';
     UpdateUserProvider,
     DeleteUserProvider,
   ],
-  exports: [UsersService],
+  exports: [UsersService, FindUserProvider],
 })
 export class UsersModule {}
