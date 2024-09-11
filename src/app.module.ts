@@ -9,6 +9,7 @@ import databaseConfig from './config/database.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProfilesModule } from './profiles/profiles.module';
 import { PostsModule } from './posts/posts.module';
+import { CommentsModule } from './comments/comments.module';
 
 const ENV = process.env.NODE_ENV;
 
@@ -37,6 +38,7 @@ const ENV = process.env.NODE_ENV;
     }),
     ProfilesModule,
     PostsModule,
+    CommentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

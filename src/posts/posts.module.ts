@@ -12,6 +12,13 @@ import { DeletePostProvider } from './providers/delete-post.provider';
 @Module({
   imports: [TypeOrmModule.forFeature([Post]), UsersModule],
   controllers: [PostsController],
-  providers: [PostsService, CreatePostProvider, FindPostsProvider, UpdatePostProvider, DeletePostProvider],
+  providers: [
+    PostsService,
+    CreatePostProvider,
+    FindPostsProvider,
+    UpdatePostProvider,
+    DeletePostProvider,
+  ],
+  exports: [FindPostsProvider],
 })
 export class PostsModule {}
