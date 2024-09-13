@@ -1,4 +1,6 @@
+import { Exclude } from 'class-transformer';
 import { Comment } from 'src/comments/entities/comment.entity';
+import { Follower } from 'src/followers/entities/follower.entity';
 import { Post } from 'src/posts/entities/post.entity';
 import { Profile } from 'src/profiles/entities/profile.entity';
 import {
@@ -39,6 +41,7 @@ export class User {
   })
   username: string;
 
+  @Exclude()
   @Column({
     type: 'varchar',
     length: 1024,
@@ -54,6 +57,12 @@ export class User {
 
   @OneToMany(() => Comment, (comment) => comment.user)
   comments: Comment[];
+
+  @OneToMany(() => Follower, (follower) => follower.follower)
+  followers: Follower[];
+
+  @OneToMany(() => Follower, (follower) => follower.followed)
+  following: Follower[];
 
   @CreateDateColumn()
   createdAt: Date;

@@ -27,7 +27,7 @@ export class CommentsService {
   }
 
   public findById(id: number) {
-    return this.findCommentsProvider.findbyId(id);
+    return this.findCommentsProvider.findByIdOrThrow(id);
   }
 
   public update(id: number, patchCommentDto: PatchCommentDto) {

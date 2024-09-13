@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { ClassSerializerInterceptor, Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
@@ -10,6 +10,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProfilesModule } from './profiles/profiles.module';
 import { PostsModule } from './posts/posts.module';
 import { CommentsModule } from './comments/comments.module';
+import { FollowersModule } from './followers/followers.module';
+import { AuthModule } from './auth/auth.module';
+import { APP_INTERCEPTOR } from '@nestjs/core';
 
 const ENV = process.env.NODE_ENV;
 
@@ -39,8 +42,13 @@ const ENV = process.env.NODE_ENV;
     ProfilesModule,
     PostsModule,
     CommentsModule,
+    FollowersModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    { provide: APP_INTERCEPTOR, useClass: ClassSerializerInterceptor },
+  ],
 })
 export class AppModule {}

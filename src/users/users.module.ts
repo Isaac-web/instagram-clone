@@ -7,9 +7,10 @@ import { CreateUserProvider } from './providers/create-user.provider';
 import { FindUserProvider } from './providers/find-user.provider';
 import { UpdateUserProvider } from './providers/update-user.provider';
 import { DeleteUserProvider } from './providers/delete-user.provider';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([User])],
+  imports: [TypeOrmModule.forFeature([User]), AuthModule],
   controllers: [UsersController],
   providers: [
     UsersService,

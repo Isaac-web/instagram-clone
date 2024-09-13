@@ -7,12 +7,15 @@ import { Repository } from 'typeorm';
 import { User } from '../entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from '../dtos/create-user.dto';
+import { HashProvider } from 'src/auth/providers/hash.provider';
 
 @Injectable()
 export class CreateUserProvider {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
+
+    private readonly hashProvider: HashProvider,
   ) {}
 
   public async create(createUserDto: CreateUserDto) {
@@ -21,7 +24,10 @@ export class CreateUserProvider {
       this.checkDupliateUsername(createUserDto.username),
     ]);
 
-    const user = this.usersRepository.create(createUserDto);
+    const user = this.usersRepository.create({
+      ...createUserDto,
+      password: await this.hashProvider.hash(createUserDto.password),
+    });
 
     try {
       return await this.usersRepository.save(user);

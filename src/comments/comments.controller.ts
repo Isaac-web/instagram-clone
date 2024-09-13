@@ -55,7 +55,7 @@ export class CommentsController {
   })
   @ApiQuery({
     name: 'postId',
-    type: 'number',
+    type: 'integer',
     description: 'The id of the post the comment belongs to.',
     example: 1,
   })
@@ -87,7 +87,7 @@ export class CommentsController {
 
   @Patch('/:id')
   @ApiOperation({
-    description: 'Updates a comment with a given id.',
+    summary: 'Updates a comment with a given id.',
   })
   @ApiResponse({
     status: 200,
