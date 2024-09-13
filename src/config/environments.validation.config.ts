@@ -11,4 +11,9 @@ export const environmentsValidationSchema = Joi.object({
   DB_PORT: Joi.number().port().required(),
   DB_SYNCHRONIZE: Joi.boolean().default(false),
   DB_AUTO_LOAD_ENTITIES: Joi.boolean().default(false),
+  JWT_SECRET: Joi.string().required(),
+  JWT_AUDIENCE: Joi.string().required(),
+  JWT_ISSUER: Joi.string().required(),
+  JWT_ACCESS_TOKEN_TTL: Joi.number().required(),
+  JWT_REFRESH_TOKEN_TTL: Joi.number().required(),
 });

@@ -13,6 +13,7 @@ import { CommentsModule } from './comments/comments.module';
 import { FollowersModule } from './followers/followers.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_INTERCEPTOR } from '@nestjs/core';
+import jwtConfig from './auth/config/jwt.config';
 
 const ENV = process.env.NODE_ENV;
 
@@ -22,7 +23,7 @@ const ENV = process.env.NODE_ENV;
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: !ENV ? '.env' : `.env.${ENV}`,
-      load: [appConfig, databaseConfig],
+      load: [appConfig, databaseConfig, jwtConfig],
       validationSchema: environmentsValidationSchema,
       cache: true,
     }),
