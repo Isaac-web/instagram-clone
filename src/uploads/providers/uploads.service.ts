@@ -3,7 +3,6 @@ import {
   Inject,
   Injectable,
   RequestTimeoutException,
-  UnprocessableEntityException,
 } from '@nestjs/common';
 import { ConfigType } from '@nestjs/config';
 import { S3 } from 'aws-sdk';
