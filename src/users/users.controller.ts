@@ -13,6 +13,8 @@ import {
 import { CreateUserDto } from './dtos/create-user.dto';
 import { PatchUserDto } from './dtos/patch-user.dto';
 import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-types.enum';
 
 @ApiTags('Users')
 @Controller('users')
@@ -31,6 +33,7 @@ export class UsersController {
     status: HttpStatus.BAD_REQUEST,
     description: 'Invalid user data.',
   })
+  @Auth(AuthType.None)
   public create(@Body() createUserDto: CreateUserDto) {
     return this.usersService.create(createUserDto);
   }

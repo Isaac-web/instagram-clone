@@ -8,9 +8,10 @@ import { UsersModule } from 'src/users/users.module';
 import { FindPostsProvider } from './providers/find-posts.provider';
 import { UpdatePostProvider } from './providers/update-post.provider';
 import { DeletePostProvider } from './providers/delete-post.provider';
+import { AuthModule } from 'src/auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Post]), UsersModule],
+  imports: [TypeOrmModule.forFeature([Post]), UsersModule, AuthModule],
   controllers: [PostsController],
   providers: [
     PostsService,

@@ -45,9 +45,17 @@ export class User {
   @Column({
     type: 'varchar',
     length: 1024,
-    nullable: false,
+    nullable: true,
   })
   password: string;
+
+  @Exclude()
+  @Column({
+    type: 'varchar',
+    nullable: true,
+    unique: true,
+  })
+  googleId: string;
 
   @OneToOne(() => Profile, (profile) => profile.user, { cascade: true })
   profile: Profile;

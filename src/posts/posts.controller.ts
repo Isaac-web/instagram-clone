@@ -12,7 +12,11 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  UseGuards,
 } from '@nestjs/common';
+import { AccessTokenGuard } from 'src/auth/guards/access-token/access-token.guard';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-types.enum';
 
 @ApiTags('Posts')
 @Controller('posts')
@@ -42,6 +46,7 @@ export class PostsController {
     status: HttpStatus.OK,
     description: 'Posts returned successfully.',
   })
+  @Auth(AuthType.Bearer)
   public findAll() {
     return this.postsService.findAll();
   }

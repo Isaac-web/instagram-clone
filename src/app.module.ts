@@ -12,8 +12,12 @@ import { PostsModule } from './posts/posts.module';
 import { CommentsModule } from './comments/comments.module';
 import { FollowersModule } from './followers/followers.module';
 import { AuthModule } from './auth/auth.module';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import jwtConfig from './auth/config/jwt.config';
+import { AccessTokenGuard } from './auth/guards/access-token/access-token.guard';
+import { JwtModule } from '@nestjs/jwt';
+import { AuthenticationGuard } from './auth/guards/authentication/authentication.guard';
+import googleOauthConfig from './config/google-oauth.config';
 
 const ENV = process.env.NODE_ENV;
 
@@ -23,7 +27,7 @@ const ENV = process.env.NODE_ENV;
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: !ENV ? '.env' : `.env.${ENV}`,
-      load: [appConfig, databaseConfig, jwtConfig],
+      load: [appConfig, databaseConfig, jwtConfig, googleOauthConfig],
       validationSchema: environmentsValidationSchema,
       cache: true,
     }),
@@ -45,11 +49,15 @@ const ENV = process.env.NODE_ENV;
     CommentsModule,
     FollowersModule,
     AuthModule,
+    ConfigModule.forFeature(jwtConfig),
+    JwtModule,
   ],
   controllers: [AppController],
   providers: [
     AppService,
     { provide: APP_INTERCEPTOR, useClass: ClassSerializerInterceptor },
+    { provide: APP_GUARD, useClass: AuthenticationGuard },
+    AccessTokenGuard,
   ],
 })
 export class AppModule {}

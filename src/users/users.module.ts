@@ -19,6 +19,6 @@ import { AuthModule } from 'src/auth/auth.module';
     UpdateUserProvider,
     DeleteUserProvider,
   ],
-  exports: [UsersService, FindUserProvider],
+  exports: [UsersService, FindUserProvider, CreateUserProvider],
 })
 export class UsersModule {}

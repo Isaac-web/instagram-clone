@@ -59,6 +59,16 @@ export class FindUserProvider {
     }
   }
 
+  public async findByGoogleId(googleId: string) {
+    try {
+      return await this.usersRepository.findOneBy({ googleId });
+    } catch {
+      throw new RequestTimeoutException(
+        'Cannot retreive user at the moment. Please try again later.',
+      );
+    }
+  }
+
   public async findByUsername(username: string) {
     try {
       return await this.usersRepository.findOne({

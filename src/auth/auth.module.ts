@@ -7,6 +7,7 @@ import { UsersModule } from 'src/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule } from '@nestjs/config';
 import { GenerateTokenProvider } from './providers/generate-token.provider';
+import { GoogleModule } from './social/google/google.module';
 import jwtConfig from './config/jwt.config';
 
 @Module({
@@ -14,6 +15,7 @@ import jwtConfig from './config/jwt.config';
     forwardRef(() => UsersModule),
     JwtModule,
     ConfigModule.forFeature(jwtConfig),
+    GoogleModule,
   ],
   controllers: [AuthController],
   providers: [
@@ -24,6 +26,6 @@ import jwtConfig from './config/jwt.config';
     },
     GenerateTokenProvider,
   ],
-  exports: [HashProvider],
+  exports: [HashProvider, GenerateTokenProvider],
 })
 export class AuthModule {}
