@@ -17,7 +17,9 @@ import jwtConfig from './auth/config/jwt.config';
 import { AccessTokenGuard } from './auth/guards/access-token/access-token.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { AuthenticationGuard } from './auth/guards/authentication/authentication.guard';
+import { UploadsModule } from './uploads/uploads.module';
 import googleOauthConfig from './config/google-oauth.config';
+import awsConfig from './uploads/config/aws.config';
 
 const ENV = process.env.NODE_ENV;
 
@@ -27,7 +29,13 @@ const ENV = process.env.NODE_ENV;
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: !ENV ? '.env' : `.env.${ENV}`,
-      load: [appConfig, databaseConfig, jwtConfig, googleOauthConfig],
+      load: [
+        appConfig,
+        databaseConfig,
+        jwtConfig,
+        googleOauthConfig,
+        awsConfig,
+      ],
       validationSchema: environmentsValidationSchema,
       cache: true,
     }),
@@ -51,6 +59,7 @@ const ENV = process.env.NODE_ENV;
     AuthModule,
     ConfigModule.forFeature(jwtConfig),
     JwtModule,
+    UploadsModule,
   ],
   controllers: [AppController],
   providers: [
