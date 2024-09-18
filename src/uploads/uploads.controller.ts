@@ -25,10 +25,10 @@ export class UploadsController {
 
   @Post('/image')
   @ApiOperation({
-    summary: `Uploads image that has a file type of one of ${supportedImageMimeTypes.join(', ')}.`,
+    summary: `Uploads an image that has a file type of one of; ${supportedImageMimeTypes.join(', ')}.`,
   })
   @ApiResponse({
-    status: 200,
+    status: 201,
     description: 'File upload was successful.',
   })
   @ApiResponse({
