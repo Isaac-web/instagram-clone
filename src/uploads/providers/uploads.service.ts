@@ -8,7 +8,7 @@ import { ConfigType } from '@nestjs/config';
 import { S3 } from 'aws-sdk';
 import awsConfig from '../config/aws.config';
 import { v4 as uuid } from 'uuid';
-import { extname, join, posix } from 'path';
+import { extname, posix } from 'path';
 import { Repository } from 'typeorm';
 import { Upload } from '../entities/upload.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -26,7 +26,9 @@ export class UploadsService {
   ) {}
   public async uploadImage(file: Express.Multer.File) {
     if (!supportedImageMimeTypes.includes(file.mimetype))
-      throw new BadRequestException('The given file type is not supported.');
+      throw new BadRequestException(
+        'The given file type is not supported image.',
+      );
 
     const s3 = new S3();
     let uploadedFileName: string;
