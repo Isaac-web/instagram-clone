@@ -1,3 +1,4 @@
+import { FindUserProvider } from 'src/users/providers/find-user.provider';
 import {
   CanActivate,
   ExecutionContext,
@@ -10,6 +11,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import jwtConfig from 'src/auth/config/jwt.config';
 import { ACTIVE_USER_KEY } from 'src/auth/constants/auth.constants';
+import { AccessTokenPayload } from 'src/auth/interfaces/access-token-payload.interfaces';
 
 @Injectable()
 export class AccessTokenGuard implements CanActivate {
@@ -18,6 +20,8 @@ export class AccessTokenGuard implements CanActivate {
 
     @Inject(jwtConfig.KEY)
     private readonly jwtConfigurations: ConfigType<typeof jwtConfig>,
+
+    private readonly findUserProvider: FindUserProvider,
   ) {}
 
   public async canActivate(context: ExecutionContext): Promise<boolean> {
@@ -27,12 +31,14 @@ export class AccessTokenGuard implements CanActivate {
     if (!token) throw new UnauthorizedException();
 
     try {
-      const payload = await this.jwtService.verifyAsync(
+      const payload: AccessTokenPayload = await this.jwtService.verifyAsync(
         token,
         this.jwtConfigurations,
       );
 
-      request[ACTIVE_USER_KEY] = payload;
+      const user = await this.findUserProvider.findByIdOrThrow(payload.sub);
+
+      request[ACTIVE_USER_KEY] = user;
     } catch (err) {
       throw new UnauthorizedException();
     }

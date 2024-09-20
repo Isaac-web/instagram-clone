@@ -16,6 +16,7 @@ import jwtConfig from './config/jwt.config';
     JwtModule,
     ConfigModule.forFeature(jwtConfig),
     GoogleModule,
+    forwardRef(() => UsersModule),
   ],
   controllers: [AuthController],
   providers: [
