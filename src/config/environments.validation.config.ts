@@ -23,4 +23,9 @@ export const environmentsValidationSchema = Joi.object({
   AWS_REGION: Joi.string().required(),
   AWS_BUCKET_NAME: Joi.string().required(),
   AWS_CLOUDFRONT_URL: Joi.string().required(),
+  MAILER_HOST: Joi.string().required(),
+  MAILER_PORT: Joi.number().port().required(),
+  MAILER_AUTH_USER: Joi.string().required(),
+  MAILER_AUTH_PASSWORD: Joi.string().required(),
+  MAILER_DEFAULT_SENDER: Joi.string().required(),
 });

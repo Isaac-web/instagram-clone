@@ -10,6 +10,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { HashProvider } from 'src/auth/providers/hash.provider';
 import { GoogleUserData } from 'src/auth/social/google/interfaces/google-user-data.interface';
+import { MailerService } from '@nestjs-modules/mailer';
 
 @Injectable()
 export class CreateUserProvider {
@@ -20,6 +21,8 @@ export class CreateUserProvider {
     private readonly hashProvider: HashProvider,
 
     private readonly findUserProvider: FindUserProvider,
+
+    private readonly mailerService: MailerService,
   ) {}
 
   public async create(createUserDto: CreateUserDto) {
@@ -28,14 +31,24 @@ export class CreateUserProvider {
       this.checkDupliateUsername(createUserDto.username),
     ]);
 
-    const user = this.usersRepository.create({
+    let user = this.usersRepository.create({
       ...createUserDto,
       password: await this.hashProvider.hash(createUserDto.password),
     });
 
     try {
-      return await this.usersRepository.save(user);
-    } catch {
+      user = await this.usersRepository.save(user);
+
+      await this.mailerService.sendMail({
+        from: 'SimpleSocial Support Team <no-reply@mail.com>',
+        to: user.email,
+        subject: 'Welcome SimpleSocial',
+        template: 'welcome',
+        context: { user },
+      });
+
+      return user;
+    } catch (error) {
       throw new RequestTimeoutException(
         'Cannot create a user at the moment. Please try again later.',
       );
@@ -45,10 +58,20 @@ export class CreateUserProvider {
   public async createGoogleUser(googleUserData: GoogleUserData) {
     await this.checkDupliateGoogleId(googleUserData.googleId);
 
-    const user = this.usersRepository.create(googleUserData);
+    let user = this.usersRepository.create(googleUserData);
 
     try {
-      return await this.usersRepository.save(user);
+      user = await this.usersRepository.save(user);
+
+      await this.mailerService.sendMail({
+        from: 'SimpleSocial Support Team <no-reply@mail.com>',
+        to: user.email,
+        subject: 'Welcome SimpleSocial',
+        template: 'welcome_oauth',
+        context: { user },
+      });
+
+      return user;
     } catch {
       throw new RequestTimeoutException(
         'Cannot create a user at the moment. Please try again later.',

@@ -18,8 +18,10 @@ import { AccessTokenGuard } from './auth/guards/access-token/access-token.guard'
 import { JwtModule } from '@nestjs/jwt';
 import { AuthenticationGuard } from './auth/guards/authentication/authentication.guard';
 import { UploadsModule } from './uploads/uploads.module';
+import { MailModule } from './mail/mail.module';
 import googleOauthConfig from './config/google-oauth.config';
 import awsConfig from './uploads/config/aws.config';
+import mailConfig from './mail/config/mail.config';
 
 const ENV = process.env.NODE_ENV;
 
@@ -35,6 +37,7 @@ const ENV = process.env.NODE_ENV;
         jwtConfig,
         googleOauthConfig,
         awsConfig,
+        mailConfig,
       ],
       validationSchema: environmentsValidationSchema,
       cache: true,
@@ -60,6 +63,7 @@ const ENV = process.env.NODE_ENV;
     ConfigModule.forFeature(jwtConfig),
     JwtModule,
     UploadsModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [
