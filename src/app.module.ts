@@ -19,6 +19,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { AuthenticationGuard } from './auth/guards/authentication/authentication.guard';
 import { UploadsModule } from './uploads/uploads.module';
 import { MailModule } from './mail/mail.module';
+import { LikesModule } from './likes/likes.module';
 import googleOauthConfig from './config/google-oauth.config';
 import awsConfig from './uploads/config/aws.config';
 import mailConfig from './mail/config/mail.config';
@@ -64,6 +65,7 @@ const ENV = process.env.NODE_ENV;
     JwtModule,
     UploadsModule,
     MailModule,
+    LikesModule,
   ],
   controllers: [AppController],
   providers: [

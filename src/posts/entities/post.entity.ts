@@ -4,6 +4,9 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -40,6 +43,10 @@ export class Post {
 
   @OneToMany(() => Comment, (comment) => comment.post)
   comments: Comment[];
+
+  @ManyToMany(() => User, (user) => user.liked, { onDelete: 'CASCADE' })
+  @JoinTable()
+  likes: User[];
 
   @CreateDateColumn()
   createdAt: Date;

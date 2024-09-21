@@ -7,6 +7,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToMany,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -65,6 +66,9 @@ export class User {
 
   @OneToMany(() => Comment, (comment) => comment.user)
   comments: Comment[];
+
+  @ManyToMany(() => Post, (post) => post.likes, { onDelete: 'CASCADE' })
+  liked: Post[];
 
   @OneToMany(() => Follower, (follower) => follower.follower)
   followers: Follower[];

@@ -11,6 +11,7 @@ import {
 import { CreateFollowerDto } from './dtos/create-follower.dto';
 import { FollowersService } from './providers/followers.service';
 import {
+  ApiHeader,
   ApiOperation,
   ApiParam,
   ApiQuery,
@@ -39,6 +40,11 @@ export class FollowersController {
     status: 404,
     description: 'User about to be followed cannot be found.',
   })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
+  })
   public create(@Body() createFollowerDto: CreateFollowerDto) {
     return this.followersService.create(createFollowerDto);
   }
@@ -59,6 +65,11 @@ export class FollowersController {
     name: 'userId',
     type: 'integer',
     example: 1,
+  })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
   })
   public findAll(@Query('userId', new ParseIntPipe()) userId: number) {
     return this.followersService.findAll(userId);
@@ -81,6 +92,11 @@ export class FollowersController {
     type: 'integer',
     example: 1,
   })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
+  })
   public findById(@Param('id', new ParseIntPipe()) id: number) {
     return this.followersService.findById(id);
   }
@@ -100,6 +116,11 @@ export class FollowersController {
     name: 'id',
     type: 'integer',
     example: 1,
+  })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
   })
   @Delete('/:id')
   public delete(@Param('id', new ParseIntPipe()) id: number) {

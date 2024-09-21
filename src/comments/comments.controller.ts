@@ -13,6 +13,7 @@ import { CommentsService } from './providers/comments.service';
 import { CreateCommentDto } from './dtos/create-comment.dto';
 import { PatchCommentDto } from './dtos/patch-comment.dto';
 import {
+  ApiHeader,
   ApiOperation,
   ApiParam,
   ApiQuery,
@@ -41,6 +42,11 @@ export class CommentsController {
     status: 404,
     description: 'User or Post could not be found.',
   })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
+  })
   public create(@Body() createCommentDto: CreateCommentDto) {
     return this.commentsService.create(createCommentDto);
   }
@@ -58,6 +64,11 @@ export class CommentsController {
     type: 'integer',
     description: 'The id of the post the comment belongs to.',
     example: 1,
+  })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
   })
   public findAll(@Query('postId', new ParseIntPipe()) postId: number) {
     return this.commentsService.findAll(postId);
@@ -80,6 +91,11 @@ export class CommentsController {
     type: 'integer',
     description: 'The id of the comment.',
     example: 1,
+  })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
   })
   public findById(@Param('id', new ParseIntPipe()) id: number) {
     return this.commentsService.findById(id);
@@ -107,6 +123,11 @@ export class CommentsController {
     description: 'The id of the comment.',
     example: 1,
   })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
+  })
   public update(
     @Param('id', new ParseIntPipe()) id: number,
     @Body() patchCommentDto: PatchCommentDto,
@@ -131,6 +152,11 @@ export class CommentsController {
     type: 'integer',
     description: 'The id of the comment.',
     example: 1,
+  })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
   })
   public delete(@Param('id', new ParseIntPipe()) id: number) {
     return this.commentsService.delete(id);

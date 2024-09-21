@@ -1,4 +1,4 @@
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreatePostDto } from './dtos/create-post.dto';
 import { PatchPostDto } from './dtos/patch-post.dto';
 import { PostsService } from './providers/posts.service';
@@ -33,6 +33,11 @@ export class PostsController {
     status: HttpStatus.BAD_REQUEST,
     description: 'Invalid post data.',
   })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
+  })
   public create(@Body() createPostDto: CreatePostDto) {
     return this.postsService.create(createPostDto);
   }
@@ -46,6 +51,11 @@ export class PostsController {
     description: 'Posts returned successfully.',
   })
   @Auth(AuthType.Bearer)
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
+  })
   public findAll() {
     return this.postsService.findAll();
   }
@@ -61,6 +71,11 @@ export class PostsController {
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
     description: 'Post could not be found.',
+  })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
   })
   public findById(@Param('id', new ParseIntPipe()) id: number) {
     return this.postsService.findById(id);
@@ -82,6 +97,11 @@ export class PostsController {
     status: HttpStatus.NOT_FOUND,
     description: 'Post could not be found.',
   })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
+  })
   public update(
     @Param('id', new ParseIntPipe()) id: number,
     @Body() patchPostDto: PatchPostDto,
@@ -100,6 +120,11 @@ export class PostsController {
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
     description: 'Post could not be found.',
+  })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
   })
   public delete(@Param('id', new ParseIntPipe()) id: number) {
     return this.postsService.delete(id);

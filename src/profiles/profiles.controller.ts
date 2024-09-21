@@ -12,7 +12,7 @@ import {
 } from '@nestjs/common';
 import { CreateProfileDto } from './dtos/create-profile.dto';
 import { PatchProfileDto } from './dtos/patch-profile.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Profiles')
 @Controller('profiles')
@@ -32,6 +32,11 @@ export class ProfilesController {
     description:
       'User already has an existing profile or invalid profile data.',
   })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
+  })
   public create(@Body() createProfileDto: CreateProfileDto) {
     return this.profilesService.create(createProfileDto);
   }
@@ -41,6 +46,11 @@ export class ProfilesController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'List of profiles returned successfully.',
+  })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
   })
   public findAll() {
     return this.profilesService.findAll();
@@ -55,6 +65,11 @@ export class ProfilesController {
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
     description: 'Profile with the given id could not be found.',
+  })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
   })
   public findById(@Param('id', new ParseIntPipe()) id: number) {
     return this.profilesService.findById(id);
@@ -76,6 +91,11 @@ export class ProfilesController {
     status: HttpStatus.NOT_FOUND,
     description: 'Profile with the given id could not be found.',
   })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
+  })
   public update(
     @Param('id') id: number,
     @Body() patchProfileDto: PatchProfileDto,
@@ -94,6 +114,11 @@ export class ProfilesController {
   @ApiResponse({
     status: HttpStatus.NOT_FOUND,
     description: 'Profile with the given id could not be found.',
+  })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
   })
   public delete(@Param('id') id: number) {
     return this.profilesService.delete(id);

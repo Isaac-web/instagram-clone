@@ -9,6 +9,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import {
   ApiBody,
   ApiConsumes,
+  ApiHeader,
   ApiOperation,
   ApiProperty,
   ApiResponse,
@@ -52,6 +53,11 @@ export class UploadsController {
         },
       },
     },
+  })
+  @ApiHeader({
+    name: 'Authorization',
+    required: true,
+    description: 'Authorization bearer token',
   })
   @UseInterceptors(FileInterceptor('file'))
   @Auth(AuthType.None)
