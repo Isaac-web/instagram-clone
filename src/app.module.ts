@@ -20,6 +20,7 @@ import { AuthenticationGuard } from './auth/guards/authentication/authentication
 import { UploadsModule } from './uploads/uploads.module';
 import { MailModule } from './mail/mail.module';
 import { LikesModule } from './likes/likes.module';
+import { NotificationsModule } from './notifications/notifications.module';
 import googleOauthConfig from './config/google-oauth.config';
 import awsConfig from './uploads/config/aws.config';
 import mailConfig from './mail/config/mail.config';
@@ -66,6 +67,7 @@ const ENV = process.env.NODE_ENV;
     UploadsModule,
     MailModule,
     LikesModule,
+    NotificationsModule,
   ],
   controllers: [AppController],
   providers: [

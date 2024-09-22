@@ -1,6 +1,7 @@
 import { Exclude } from 'class-transformer';
 import { Comment } from 'src/comments/entities/comment.entity';
 import { Follower } from 'src/followers/entities/follower.entity';
+import { Notification } from 'src/notifications/entities/notification.entity';
 import { Post } from 'src/posts/entities/post.entity';
 import { Profile } from 'src/profiles/entities/profile.entity';
 import {
@@ -75,6 +76,9 @@ export class User {
 
   @OneToMany(() => Follower, (follower) => follower.followed)
   following: Follower[];
+
+  @OneToMany(() => Notification, (notification) => notification.user)
+  notifications: Notification[];
 
   @CreateDateColumn()
   createdAt: Date;
