@@ -21,6 +21,7 @@ import { UploadsModule } from './uploads/uploads.module';
 import { MailModule } from './mail/mail.module';
 import { LikesModule } from './likes/likes.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { PaginationModule } from './common/pagination/pagination.module';
 import googleOauthConfig from './config/google-oauth.config';
 import awsConfig from './uploads/config/aws.config';
 import mailConfig from './mail/config/mail.config';
@@ -68,6 +69,7 @@ const ENV = process.env.NODE_ENV;
     MailModule,
     LikesModule,
     NotificationsModule,
+    PaginationModule,
   ],
   controllers: [AppController],
   providers: [

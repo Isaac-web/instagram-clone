@@ -1,3 +1,4 @@
+import { GetPostQueryDto } from './dtos/get-post-query.dto';
 import { ApiHeader, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreatePostDto } from './dtos/create-post.dto';
 import { PatchPostDto } from './dtos/patch-post.dto';
@@ -12,6 +13,7 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  Query,
 } from '@nestjs/common';
 
 import { Auth } from 'src/auth/decorators/auth.decorator';
@@ -56,8 +58,8 @@ export class PostsController {
     required: true,
     description: 'Authorization bearer token',
   })
-  public findAll() {
-    return this.postsService.findAll();
+  public findAll(@Query() getPostQueryDto: GetPostQueryDto) {
+    return this.postsService.findAll(getPostQueryDto);
   }
 
   @Get('/:id')

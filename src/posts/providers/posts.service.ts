@@ -5,6 +5,7 @@ import { PatchPostDto } from '../dtos/patch-post.dto';
 import { CreatePostProvider } from './create-post.provider';
 import { FindPostsProvider } from './find-posts.provider';
 import { DeletePostProvider } from './delete-post.provider';
+import { GetPostQueryDto } from '../dtos/get-post-query.dto';
 
 @Injectable()
 export class PostsService {
@@ -22,8 +23,8 @@ export class PostsService {
     return this.createPostProvider.create(createPostDto);
   }
 
-  public findAll() {
-    return this.findPostsProvider.findAll();
+  public findAll(getPostQueryDto: GetPostQueryDto) {
+    return this.findPostsProvider.findAll(getPostQueryDto);
   }
 
   public findById(id: number) {

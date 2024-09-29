@@ -9,9 +9,15 @@ import { FindPostsProvider } from './providers/find-posts.provider';
 import { UpdatePostProvider } from './providers/update-post.provider';
 import { DeletePostProvider } from './providers/delete-post.provider';
 import { AuthModule } from 'src/auth/auth.module';
+import { PaginationModule } from 'src/common/pagination/pagination.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Post]), UsersModule, AuthModule],
+  imports: [
+    TypeOrmModule.forFeature([Post]),
+    UsersModule,
+    AuthModule,
+    PaginationModule,
+  ],
   controllers: [PostsController],
   providers: [
     PostsService,

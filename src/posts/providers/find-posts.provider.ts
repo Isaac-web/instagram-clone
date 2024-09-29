@@ -1,3 +1,5 @@
+import { PaginationProvider } from './../../common/pagination/providers/pagination.provider';
+import { GetPostQueryDto } from './../dtos/get-post-query.dto';
 import {
   Injectable,
   NotFoundException,
@@ -12,11 +14,21 @@ export class FindPostsProvider {
   constructor(
     @InjectRepository(Post)
     private readonly postsRepository: Repository<Post>,
+
+    private readonly paginationProvider: PaginationProvider,
   ) {}
 
-  public findAll() {
+  public findAll(getPostQueryDto: GetPostQueryDto) {
     try {
-      return this.postsRepository.find({ relations: { author: true } });
+      return this.paginationProvider.paginateQuery(
+        this.postsRepository,
+        getPostQueryDto,
+      );
+      // return this.postsRepository.find({
+      //   relations: { author: true },
+      //   skip: (getPostQueryDto.page - 1) * getPostQueryDto.limit,
+      //   take: getPostQueryDto.limit,
+      // });
     } catch {
       throw new RequestTimeoutException(
         'Cannot retreive posts at the moment. Please try again later.',
