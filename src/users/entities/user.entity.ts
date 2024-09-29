@@ -8,6 +8,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
   ManyToMany,
   OneToMany,
   OneToOne,
@@ -79,6 +80,10 @@ export class User {
 
   @OneToMany(() => Notification, (notification) => notification.user)
   notifications: Notification[];
+
+  @ManyToMany(() => Post, (post) => post.savedBy)
+  @JoinTable()
+  savedPosts: Post[];
 
   @CreateDateColumn()
   createdAt: Date;

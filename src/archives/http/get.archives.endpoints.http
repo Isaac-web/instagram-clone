@@ -1,0 +1,3 @@
+GET http://localhost:3000/archives
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9obmRvZUBnbWFpbC5jb20iLCJpYXQiOjE3Mjc2MjYzODAsImV4cCI6MTcyNzYyOTk4MCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.Z2iTVqwyAANQqEktlsZVupI-4idkwfKIR-nk6sGIs1k

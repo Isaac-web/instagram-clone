@@ -20,7 +20,7 @@ export class FindPostsProvider {
 
   public findAll(getPostQueryDto: GetPostQueryDto) {
     try {
-      return this.paginationProvider.paginateQuery(
+      return this.paginationProvider.paginate(
         this.postsRepository,
         getPostQueryDto,
       );

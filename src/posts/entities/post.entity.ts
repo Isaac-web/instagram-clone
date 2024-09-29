@@ -4,7 +4,6 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinColumn,
   JoinTable,
   ManyToMany,
   ManyToOne,
@@ -47,6 +46,9 @@ export class Post {
   @ManyToMany(() => User, (user) => user.liked, { onDelete: 'CASCADE' })
   @JoinTable()
   likes: User[];
+
+  @ManyToMany(() => User, (user) => user.savedPosts)
+  savedBy: User[];
 
   @CreateDateColumn()
   createdAt: Date;

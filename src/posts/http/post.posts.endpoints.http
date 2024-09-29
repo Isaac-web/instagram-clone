@@ -1,10 +1,34 @@
 POST http://localhost:3000/posts
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImVtYWlsIjoiZGVsZXRlQGdtYWlsLmNvbSIsImlhdCI6MTcyNzM0NjM2MiwiZXhwIjoxNzI3MzQ5OTYyLCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.S6n_ulKsZpzULzFkkHCMJMOrTN3vPBa6f0lsD12WXHA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9obmRvZUBnbWFpbC5jb20iLCJpYXQiOjE3Mjc2MjYzODAsImV4cCI6MTcyNzYyOTk4MCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.Z2iTVqwyAANQqEktlsZVupI-4idkwfKIR-nk6sGIs1k
 
 {
-  "userId": 6,
+  "userId": 1,
   "caption": "This is an amazing post...",
   "mediaUrl": "https://s3.aws.com/some-random-bucket/path-to-file/image.jpg",
   "location": "New York City, NYC"
+}
+
+
+POST http://localhost:3000/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9obmRvZUBnbWFpbC5jb20iLCJpYXQiOjE3Mjc2MjYzODAsImV4cCI6MTcyNzYyOTk4MCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.Z2iTVqwyAANQqEktlsZVupI-4idkwfKIR-nk6sGIs1k
+
+{
+  "userId": 1,
+  "caption": "Beautiful sunset in California!",
+  "mediaUrl": "https://example.com/images/sunset.jpg",
+  "location": "California"
+}
+
+
+POST http://localhost:3000/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImVtYWlsIjoiam9obmRvZUBnbWFpbC5jb20iLCJpYXQiOjE3Mjc2MjYzODAsImV4cCI6MTcyNzYyOTk4MCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.Z2iTVqwyAANQqEktlsZVupI-4idkwfKIR-nk6sGIs1k
+
+{
+  "userId": 1,
+  "caption": "Having a blast exploring Tokyo!",
+  "mediaUrl": "https://travel.com/photos/tokyo.png",
+  "location": "Tokyo, Japan"
 }

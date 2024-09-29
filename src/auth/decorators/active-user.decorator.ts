@@ -6,7 +6,7 @@ export const ActiveUser = createParamDecorator(
   (
     field: keyof Omit<User, 'password' | 'googleId'> | undefined,
     context: ExecutionContext,
-  ) => {
+  ): User | undefined => {
     const request = context.switchToHttp().getRequest();
 
     const user = request?.[ACTIVE_USER_KEY];
