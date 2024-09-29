@@ -13,15 +13,15 @@ export class PaginationProvider {
   public async paginate<T extends ObjectLiteral>(
     repository: Repository<T>,
     paginationQueryDto: PaginationQueryDto,
-    options?: FindManyOptions<T>,
+    queryOptions?: FindManyOptions<T>,
   ) {
     const data = await repository.find({
-      ...options,
+      ...queryOptions,
       skip: (paginationQueryDto.page - 1) * paginationQueryDto.limit,
       take: paginationQueryDto.limit,
     });
 
-    const totalItems = await repository.count();
+    const totalItems = await repository.count(queryOptions);
     const totalPages = Math.ceil(totalItems / paginationQueryDto.limit);
 
     const nextPage =
