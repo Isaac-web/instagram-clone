@@ -1,0 +1,7 @@
+POST http://localhost:3000/profiles
+Content-Type: application/json
+
+{
+	"userId": 2,
+	"bio": "Sample bio"
+}

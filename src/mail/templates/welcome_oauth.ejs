@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Simple Connect</title>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        color: #333;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #555;
+      }
+
+      .footer {
+        margin-top: 30px;
+        font-size: 0.9rem;
+        color: #888;
+      }
+
+      .footer a {
+        color: #4caf50;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome, <%= user.name %>!</h1>
+      <p>
+        We're excited to have you onboard at Simple Connect, where connecting
+        and sharing moments with friends is easier than ever.
+      </p>
+
+      <p>
+        Feel free to explore your feed, catch up with friends, and share what's
+        happening in your life. We're here to make your experience as smooth and
+        enjoyable as possible.
+      </p>
+
+      <p>Thanks for joining us!</p>
+
+      <p>
+        Best Regards, <br />
+        The Simple Connect Team
+      </p>
+
+      <p class="footer">
+        P.S. Need help navigating the platform? Visit our
+        <a href="<%= user.helpUrl %>">help page</a> anytime.
+      </p>
+    </div>
+  </body>
+</html>

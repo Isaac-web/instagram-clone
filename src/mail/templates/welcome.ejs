@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Welcome to Simple Connect</title>
+    <style>
+      body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f9f9f9;
+        color: #333;
+      }
+
+      .container {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        color: #333;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #555;
+      }
+
+      .btn {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 15px;
+        background-color: #4caf50;
+        color: white;
+        text-decoration: none;
+        font-size: 1rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+      }
+
+      .btn:hover {
+        background-color: #45a049;
+      }
+
+      .footer {
+        margin-top: 30px;
+        font-size: 0.9rem;
+        color: #888;
+      }
+
+      .footer a {
+        color: #4caf50;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome, <%= user.name %>!</h1>
+      <p>
+        Thanks for signing up for Simple Connect! We're very excited to have you
+        on board.
+      </p>
+
+      <p>
+        To get started using Simple Connect, please confirm your account below:
+      </p>
+
+      <a href="<%= user.confirmationUrl %>" class="btn">Confirm your account</a>
+
+      <p>
+        For your reference, your username is
+        <strong><%= user.username %></strong>.
+      </p>
+
+      <p>
+        Thanks, <br />
+        The Simple Connect Team
+      </p>
+
+      <p class="footer">
+        P.S. Need help getting started? Check out our
+        <a href="<%= user.helpUrl %>">help documentation</a>. Feel free to reply
+        to this email with any questions or issues you might have.
+      </p>
+
+      <p class="footer">
+        If you're having trouble clicking the confirm account button, copy and
+        paste this URL into your web browser: <br />
+        <a href="<%= user.confirmationUrl %>"><%= user.confirmationUrl %></a>
+      </p>
+    </div>
+  </body>
+</html>

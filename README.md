@@ -2,38 +2,77 @@
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
 </p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+<p align="center">Instagram Clone API - A social media backend built with NestJS</p>
 
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This project is an Instagram clone backend API built using the [NestJS](https://github.com/nestjs/nest) framework. It provides core Instagram features including user profiles, posts, comments, and more.
+
+## Features
+
+- 👤 User authentication and authorization (Email and password + Google OAuth)
+- 📝 User profiles management
+- 📸 Posts creation and management
+- 💬 Comments system
+- 🔄 RESTful API endpoints
+- 📚 API documentation with Swagger
+- 🔒 Data validation and security
+- 🗃️ TypeORM integration for database management
+- 📧 Email notifications system
+
+
+## Prerequisites
+
+- Node.js (v14 or higher)
+- Yarn package manager
+- PostgreSQL database
 
 ## Installation
 
 ```bash
 $ yarn install
+ ```
+
+## Environment Setup
+Create a `.env.development` file in the root directory and add the following variables:
+
+```plaintext
+# Database Configuration
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+DB_NAME=your_database_name
+DB_HOST=localhost
+DB_PORT=5432
+DB_SYNCHRONIZE=true
+DB_AUTO_LOAD_ENTITIES=true
+
+# JWT Configuration
+JWT_SECRET=your_jwt_secret
+JWT_AUDIENCE=your_audience
+JWT_ISSUER=your_issuer
+JWT_ACCESS_TOKEN_TTL=3600
+JWT_REFRESH_TOKEN_TTL=86000
+
+# Google OAuth Configuration
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+# AWS Configuration
+AWS_REGION=your_aws_region
+AWS_ACCESS_KEY_ID=your_access_key_id
+AWS_SECRET_ACCESS_KEY=your_secret_access_key
+AWS_BUCKET_NAME=your_bucket_name
+AWS_CLOUDFRONT_URL=your_cloudfront_url
+
+# Mail Configuration
+MAILER_HOST=your_smtp_host
+MAILER_PORT=your_smtp_port
+MAILER_AUTH_USER=your_smtp_username
+MAILER_AUTH_PASSWORD=your_smtp_password
+MAILER_DEFAULT_SENDER="Your App Name <your@email.com>"
 ```
 
-## Running the app
-
+## Running the Application
 ```bash
 # development
 $ yarn run start
@@ -43,10 +82,9 @@ $ yarn run start:dev
 
 # production mode
 $ yarn run start:prod
-```
+ ```
 
-## Test
-
+## Testing
 ```bash
 # unit tests
 $ yarn run test
@@ -56,18 +94,28 @@ $ yarn run test:e2e
 
 # test coverage
 $ yarn run test:cov
-```
+ ```
 
-## Support
+## API Documentation
+Once the application is running, you can access the Swagger API documentation at:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```plaintext
+http://localhost:3000/api/docs
+ ```
 
-## Stay in touch
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+## Project Structure
+```plaintext
+src/
+├── auth/           # Authentication related files
+├── users/          # User management
+├── profiles/       # User profiles
+├── posts/          # Posts management
+├── comments/       # Comments system
+├── mail/           # Email service and templates
+├── common/         # Shared resources
+└── config/         # Configuration files
 
-## License
 
-Nest is [MIT licensed](LICENSE).
+
+

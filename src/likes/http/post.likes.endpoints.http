@@ -1,0 +1,7 @@
+POST http://localhost:3000/likes
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjYsImVtYWlsIjoiZGVsZXRlQGdtYWlsLmNvbSIsImlhdCI6MTcyNjkxODAxNCwiZXhwIjoxNzI2OTIxNjE0LCJhdWQiOiJsb2NhbGhvc3Q6MzAwMCIsImlzcyI6ImxvY2FsaG9zdDozMDAwIn0.Cts-BJI6Yvl0ObR7Qk-SnOPj5wQkEAy3vSuSt02uOmY
+
+{
+	"postId": 5
+}

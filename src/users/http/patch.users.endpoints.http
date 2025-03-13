@@ -1,0 +1,7 @@
+PATCH http://localhost:3000/users/2
+Content-Type: application/json
+
+{
+	"name": "Updated user",
+	"username": "update_user"
+}
